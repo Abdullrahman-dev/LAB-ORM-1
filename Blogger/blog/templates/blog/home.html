@@ -1,15 +1,22 @@
 {% extends 'blog/base.html' %}
 {% block content %}
 
-<h2>Latest Posts</h2>
+<h2>All Posts</h2>
 
 {% for post in posts %}
 
-    <article class="post">
-        <h3>{{ post.title }}</h3>
-        <p>{{ post.content }}</p>
-        <small>Published at: {{ post.published_at|date:"Y-m-d H:i" }}</small>
-    </article>
+<div class="post">
+    
+    <h3><a href="{% url 'post_detail' post.id %}">{{ post.title }}</a></h3>
+    
+    {% if post.image %}
+        <img src="{{ post.image.url }}" alt="{{ post.title }}" width="200">
+    {% endif %}
+    
+    <p>{{ post.content|truncatechars:100 }}</p>
+    
+    <small>{{ post.published_at|date:"Y-m-d H:i" }}</small>
+</div>
 
 {% empty %}
 

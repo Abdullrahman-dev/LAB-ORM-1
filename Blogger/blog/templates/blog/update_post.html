@@ -1,22 +1,22 @@
 {% extends 'blog/base.html' %}
 {% block content %}
 
-<h2>Add New Post</h2>
+<h2>Edit Post</h2>
 
 <form method="POST" enctype="multipart/form-data">
     
     {% csrf_token %}
     
     <label>Title:</label><br>
-    <input type="text" name="title" required><br><br>
+    <input type="text" name="title" value="{{ post.title }}" required><br><br>
 
     <label>Content:</label><br>
-    <textarea name="content" rows="6" required></textarea><br><br>
+    <textarea name="content" rows="6" required>{{ post.content }}</textarea><br><br>
 
-    <label>Image:</label><br>
+    <label>Replace Image:</label><br>
     <input type="file" name="image"><br><br>
 
-    <button type="submit">Publish</button>
+    <button type="submit">Update</button>
 
 </form>
 {% endblock %}
